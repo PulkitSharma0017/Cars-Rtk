@@ -23,7 +23,7 @@ function CarList() {
           onClick={() => {
             handleCarDelete(car);
           }}
-          className="is-danger"
+          className="button is-danger"
         >
           Delete
         </button>
