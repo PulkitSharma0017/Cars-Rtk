@@ -1,10 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeCar } from "../store";
 
 function CarList() {
+  const dispatch = useDispatch();
+
   const cars = useSelector((state) => {
     return state.cars.data;
   });
+
+  const handleCarDelete = (car) => {
+    dispatch(removeCar(car.id));
+  };
 
   const renderedCars = cars.map((car) => {
     return (
@@ -12,7 +19,14 @@ function CarList() {
         <p>
           {car.name} - ${car.cost}
         </p>
-        <button className="is-danger">Delete</button>
+        <button
+          onClick={() => {
+            handleCarDelete(car);
+          }}
+          className="is-danger"
+        >
+          Delete
+        </button>
       </div>
     );
   });
